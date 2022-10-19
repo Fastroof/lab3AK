@@ -1,0 +1,19 @@
+CC=g++
+CFLAGS=-c -Wall
+ 
+all: main library.a
+
+main: main.o library.a
+	$(CC) main.o library.a -o calc_exe
+
+library.a: calculator.o
+	ar -rcs library.a calculator.o
+
+calculator.o:
+	$(CC) $(CFLAGS) calculator.cpp
+
+main.o:
+	$(CC) $(CFLAGS) main.cpp
+
+clean:
+	rm -f *.o *.a calc_exe
